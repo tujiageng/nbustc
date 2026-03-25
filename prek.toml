@@ -1,0 +1,49 @@
+# Exclusions
+exclude = "^(\\.next/|node_modules/|out/|build/|dist/|\\.cache/)"
+
+# pre-commit hooks
+[[repos]]
+repo = "https://github.com/pre-commit/pre-commit-hooks"
+rev = "v6.0.0"
+hooks = [
+  { id = "trailing-whitespace" },
+  { id = "end-of-file-fixer" },
+  { id = "check-yaml" },
+  { id = "check-json" },
+  { id = "check-merge-conflict" },
+  { id = "check-added-large-files" },
+]
+
+# Oxlint
+[[repos]]
+repo = "local"
+
+[[repos.hooks]]
+id = "oxlint"
+name = "Oxlint"
+language = "bun"
+entry = "bun run lint"
+files = "\\.[jt]sx?$"
+pass_filenames = false
+
+# Oxfmt
+[[repos]]
+repo = "local"
+
+[[repos.hooks]]
+id = "oxfmt"
+name = "Oxfmt"
+language = "bun"
+entry = "bun run fmt"
+files = "\\.(tsx?|jsx?|json|mdx?|css|html)$"
+
+# Next.js build check
+[[repos]]
+repo = "local"
+
+[[repos.hooks]]
+id = "next-build"
+name = "Next.js build"
+language = "bun"
+entry = "bun run build"
+pass_filenames = false
