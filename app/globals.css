@@ -45,24 +45,25 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --background: oklch(0.98 0 0); /* 极浅灰底色 */
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
+  /* New Bee 专属亮黄色 (白天模式) */
+  --primary: oklch(0.85 0.18 95); 
+  --primary-foreground: oklch(0.1 0 0); /* 亮黄底黑字 */
+  --secondary: oklch(0.92 0 0);
   --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
+  --muted: oklch(0.95 0 0);
   --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --accent: oklch(0.85 0.18 95);
+  --accent-foreground: oklch(0.1 0 0);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
+  --border: oklch(0.85 0.18 95 / 30%); /* 边框带点黄 */
   --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --ring: oklch(0.85 0.18 95); /* 聚焦光环变成黄色 */
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -70,46 +71,47 @@
   --chart-5: oklch(0.769 0.188 70.08);
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.85 0.18 95);
+  --sidebar-primary-foreground: oklch(0.1 0 0);
   --sidebar-accent: oklch(0.97 0 0);
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar-ring: oklch(0.85 0.18 95);
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
+  --background: oklch(0.1 0 0); /* 更深的纯黑底色 */
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
+  --card: oklch(0.15 0 0);
   --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
+  --popover: oklch(0.15 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
+  /* New Bee 专属亮黄色 (暗黑模式) */
+  --primary: oklch(0.88 0.2 95); 
+  --primary-foreground: oklch(0.1 0 0); /* 亮黄底黑字，极其醒目 */
+  --secondary: oklch(0.2 0 0);
   --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
+  --muted: oklch(0.2 0 0);
   --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  --accent: oklch(0.88 0.2 95 / 20%);
+  --accent-foreground: oklch(0.88 0.2 95);
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
+  --border: oklch(0.88 0.2 95 / 30%); /* 暗黑模式下的暗金边框 */
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --ring: oklch(0.88 0.2 95); /* 黄色光环 */
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
+  --sidebar: oklch(0.15 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.88 0.2 95);
+  --sidebar-primary-foreground: oklch(0.1 0 0);
   --sidebar-accent: oklch(0.269 0 0);
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --sidebar-ring: oklch(0.88 0.2 95);
 }
 
 @layer base {
@@ -117,91 +119,120 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground transition-colors duration-300;
+  }
+  
+  /* 专属赛博蜜蜂鼠标选中特效：黄底黑字 */
+  ::selection {
+    background-color: oklch(0.88 0.2 95);
+    color: oklch(0.1 0 0);
   }
 }
+
+/* ========================================= */
+/* NEW BEE UNIVERSITY 专属特效库       */
+/* ========================================= */
+
+/* 1. 赛博故障文字特效 (Glitch) */
+.glitch-title {
+  font-weight: 900;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+  text-shadow: 0.05em 0 0 rgba(255,0,0,0.75), -0.025em -0.05em 0 rgba(0,255,0,0.75), 0.025em 0.05em 0 rgba(0,0,255,0.75);
+  animation: glitch 500ms infinite;
+}
+.glitch-title span { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+.glitch-title span:first-child {
+  animation: glitch 650ms infinite;
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  transform: translate(-0.025em, -0.0125em);
+  opacity: 0.8;
+}
+.glitch-title span:last-child {
+  animation: glitch 375ms infinite;
+  clip-path: polygon(0 80%, 100% 20%, 100% 100%, 0 100%);
+  transform: translate(0.0125em, 0.025em);
+  opacity: 0.8;
+}
+@keyframes glitch {
+  0% { text-shadow: 0.05em 0 0 rgba(255,0,0,0.75), -0.05em -0.025em 0 rgba(0,255,0,0.75), -0.025em 0.05em 0 rgba(0,0,255,0.75); }
+  14% { text-shadow: 0.05em 0 0 rgba(255,0,0,0.75), -0.05em -0.025em 0 rgba(0,255,0,0.75), -0.025em 0.05em 0 rgba(0,0,255,0.75); }
+  15% { text-shadow: -0.05em -0.025em 0 rgba(255,0,0,0.75), 0.025em 0.025em 0 rgba(0,255,0,0.75), -0.05em -0.05em 0 rgba(0,0,255,0.75); }
+  49% { text-shadow: -0.05em -0.025em 0 rgba(255,0,0,0.75), 0.025em 0.025em 0 rgba(0,255,0,0.75), -0.05em -0.05em 0 rgba(0,0,255,0.75); }
+  50% { text-shadow: 0.025em 0.05em 0 rgba(255,0,0,0.75), 0.05em 0 0 rgba(0,255,0,0.75), 0 -0.05em 0 rgba(0,0,255,0.75); }
+  99% { text-shadow: 0.025em 0.05em 0 rgba(255,0,0,0.75), 0.05em 0 0 rgba(0,255,0,0.75), 0 -0.05em 0 rgba(0,0,255,0.75); }
+  100% { text-shadow: -0.025em 0 0 rgba(255,0,0,0.75), -0.025em -0.025em 0 rgba(0,255,0,0.75), -0.025em -0.05em 0 rgba(0,0,255,0.75); }
+}
+
+/* 2. 蜜蜂霓虹发光文字 (Neon Glow) */
+.neon-text {
+  color: oklch(0.88 0.2 95);
+  text-shadow: 0 0 5px oklch(0.88 0.2 95 / 50%), 0 0 15px oklch(0.88 0.2 95 / 30%);
+}
+
+/* ========================================= */
+/* MDX 页面基础排版             */
+/* ========================================= */
 
 .mdx-layout {
   word-wrap: break-word;
 }
-
-.mdx-layout h1 {
-  @apply text-2xl font-bold leading-normal py-3;
-}
-
-.mdx-layout h2 {
-  @apply text-2xl font-bold leading-normal py-3;
-}
-
-.mdx-layout h3 {
-  @apply text-xl font-semibold leading-normal py-3;
-}
-
-.mdx-layout h4 {
-  @apply text-lg font-semibold leading-normal py-3;
-}
-
-.mdx-layout h5 {
-  @apply text-base font-semibold leading-normal my-1;
-}
-
-.mdx-layout img {
-  width: 50%;
-  @apply mt-2 mb-2;
-}
-
-.mdx-layout p {
-  @apply text-pretty my-3;
-}
-
-.mdx-layout iframe {
-  width: 70%;
-}
+.mdx-layout h1 { @apply text-2xl font-bold leading-normal py-3; }
+.mdx-layout h2 { @apply text-2xl font-bold leading-normal py-3; }
+.mdx-layout h3 { @apply text-xl font-semibold leading-normal py-3; }
+.mdx-layout h4 { @apply text-lg font-semibold leading-normal py-3; }
+.mdx-layout h5 { @apply text-base font-semibold leading-normal my-1; }
+.mdx-layout img { width: 50%; @apply mt-2 mb-2 rounded-lg border-2 border-primary/20 shadow-lg shadow-primary/10; }
+.mdx-layout p { @apply text-pretty my-3 leading-relaxed; }
+.mdx-layout iframe { width: 70%; border-radius: var(--radius-md); }
 
 @media (max-width: 480px) {
-  .mdx-layout iframe {
-    width: 100%;
-  }
+  .mdx-layout iframe { width: 100%; }
 }
 
-.mdx-layout a:hover::after {
-  width: 100%;
-}
-
+/* 链接悬浮的赛博黄高亮特效 */
 .mdx-layout a {
   position: relative;
   overflow-wrap: break-word;
-  @apply font-semibold;
+  @apply font-bold text-primary transition-all duration-300;
+  text-decoration: none;
 }
-
 .mdx-layout a:hover {
-  text-decoration: underline;
+  text-shadow: 0 0 8px var(--color-primary);
 }
-
-.mdx-layout ul {
-  padding-left: 1.5em;
+.mdx-layout a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--color-primary);
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
 }
-
-.mdx-layout button a::after {
-  all: unset;
+.mdx-layout a:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
+.mdx-layout ul { padding-left: 1.5em; }
+.mdx-layout button a::after { all: unset; }
+.mdx-layout li { list-style-type: disc; list-style-position: outside; padding-top: 0.5em; }
+.mdx-layout li::marker { color: var(--color-primary); } /* 列表的小圆点变成黄色 */
 
-.mdx-layout li {
-  list-style-type: disc;
-  list-style-position: outside;
-  padding-top: 0.5em;
-}
-
+/* 引用块加入赛博黄边框 */
 .mdx-layout blockquote {
-  @apply my-6 border-l-4 pl-4 italic text-gray-600 border-gray-300 dark:text-gray-300 dark:border-gray-600;
+  @apply my-6 border-l-4 pl-4 italic text-muted-foreground bg-primary/5 py-2 rounded-r-lg;
+  border-color: var(--color-primary);
 }
-
 .mdx-layout code {
   overflow-wrap: anywhere;
   word-break: break-word;
   white-space: pre-wrap;
+  @apply bg-muted text-primary px-1.5 py-0.5 rounded-md font-mono text-sm border border-primary/20;
 }
-
 .mdx-layout hr {
-  @apply my-5 border-t-4 border-dotted border-b-gray-900;
+  @apply my-8 border-t-2 border-dashed border-primary/50;
 }
